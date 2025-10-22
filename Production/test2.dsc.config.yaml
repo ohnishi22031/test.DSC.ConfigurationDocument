@@ -1,0 +1,11 @@
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
+
+resources:
+  - name: 001-uBlockOrigin_trustedSites.Registry_toAdd
+    type: Microsoft.Windows/Registry
+    properties:
+      _exist: true
+      keyPath: HKLM\Software\Policies\Microsoft\Edge\3rdparty\extensions\odfafepnkmbhccpbejgmiehpchacaeak\policy
+      valueName: toAdd
+      valueData:
+        String: '{"trustedSiteDirectives":["testdomain2"]}'
