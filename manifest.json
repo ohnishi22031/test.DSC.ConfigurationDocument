@@ -2,7 +2,7 @@
   "version": "initial-test",
   "base": "https://raw.githubusercontent.com/ohnishi22031/test.DSC.ConfigurationDocument/main/Production/",
   "files": [
-    {"path": "test1.dsc.config.yaml",        "sha256": "test1"},
-    {"path": "test2.dsc.config.yaml",           "sha256": "test2"},
+    {"path": "test1.dsc.config.yaml", "sha256": "test1"},
+    {"path": "test2.dsc.config.yaml", "sha256": "test2"},
   ]
 }
