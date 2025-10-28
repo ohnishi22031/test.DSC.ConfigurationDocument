@@ -1,12 +1,4 @@
 {
-  "version": "initial-test",
-  "basePath": "https://raw.githubusercontent.com/ohnishi22031/test.DSC.ConfigurationDocument/main/Production/",
-  "files": [
-    {"path": "test1.dsc.config.yaml", "sha256": "192af3f3e678d95556502e761121c47deb6de0c7a1c6a3e9663cf4056d6539de"},
-    {"path": "test2.dsc.config.yaml", "sha256": "2b6362e8fb053ae5549622975c508da50553ddc64b5d9f63997ca0490c989b1b"}
-  ]
-}
-{
   "version": "2025-10-28",
   "basePath": "https://raw.githubusercontent.com/ORG/REPO/main/Production/",
   "algo": "sha256",
