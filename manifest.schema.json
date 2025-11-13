@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/dsc-manifest.schema.json",
+  "title": "DSC Configuration Documents Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["basePath", "docs"],
+  "properties": {
+    "version": {
+      "description": "Manifest logical version (YYYY-MM-DD)",
+      "type": "string",
+      "format": "date"
+    },
+    "algo": {
+      "description": "Hash algorithm for 'h' fields",
+      "type": "string",
+      "enum": ["sha256"],
+      "default": "sha256"
+    },
+    "basePath": {
+      "description": "Public raw base URL where documents are published (points to Production/)",
+      "type": "string",
+      "format": "uri"
+    },
+    "docs": {
+      "description": "Product -> { General, Target } -> DocId -> { p, h }",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/productDocs" }
+    }
+  },
+  "$defs": {
+    "docEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["p", "h"],
+      "properties": {
+        "p": {
+          "description": "Relative path under Production/",
+          "type": "string",
+          "allOf": [
+            { "pattern": "^[^/].*" , "errorMessage": "p must be relative (no leading '/')." },
+            { "pattern": "^[^\\\\]+$", "errorMessage": "p must not contain backslashes (use '/')." },
+            { "pattern": "^.+\\.dsc\\.config\\.yaml$", "errorMessage": "p must end with .dsc.config.yaml." }
+          ]
+        },
+        "h": {
+          "description": "Lowercase SHA-256 of the file at basePath + p",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "docTier": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(?!.*\\\\).+$": { "$ref": "#/$defs/docEntry" }
+      }
+    },
+    "productDocs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["General"],
+      "properties": {
+        "General": {
+          "description": "Baseline document set (exactly one entry).",
+          "allOf": [
+            { "$ref": "#/$defs/docTier" },
+            { "minProperties": 1, "maxProperties": 1 }
+          ]
+        },
+        "Target": {
+          "description": "Add-on document set (zero or more entries).",
+          "$ref": "#/$defs/docTier"
+        }
+      }
+    }
+  }
+}
