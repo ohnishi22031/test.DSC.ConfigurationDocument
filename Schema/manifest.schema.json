@@ -18,9 +18,10 @@
       "default": "sha256"
     },
     "basePath": {
-      "description": "Public raw base URL where documents are published (points to Production/)",
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "pattern": ".+/$",
+      "description": "Raw base URL. Trailing slash is required."
     },
     "docs": {
       "description": "Product -> { General, Target } -> DocId -> { p, h }",
