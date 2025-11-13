@@ -1,9 +1,8 @@
 {
-  "version": "2025-10-28",
+  "version": "2025-11-13",
   "basePath": "https://raw.githubusercontent.com/ohnishi22031/test.DSC.ConfigurationDocument/main/Production/",
-  "algo": "sha256",
   "docs": {
-    "test1": {
+    "Windows.Autopilot": {
       "General": {
         "test1": {
           "p": "test1.dsc.config.yaml",
